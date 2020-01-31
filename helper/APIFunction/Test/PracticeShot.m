@@ -2,7 +2,7 @@ function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, miss
     missileHit = false;
     gameEnd = false;
     
-    uri = uri + "/practice/shot/" + gameId
+    uri = uri + "/practice/shot/" + gameId;
 
     contentTypeField = matlab.net.http.field.ContentTypeField('application/json');
 

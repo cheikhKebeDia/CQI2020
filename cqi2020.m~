@@ -7,7 +7,6 @@ format long g;
 format compact;
 fontSize = 20;
 addpath("helper/");
-addpath("helper/threshold");
 addpath("helper/APIFunction");
 addpath("helper/APIFunction/Test");
 addpath("helper/APIFunction/Production");
@@ -25,14 +24,3 @@ map = [0,0,0,0,0,0,0,0,0,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,93,93,93,0,0
 % ---------------- Login end ---------------------------------
 
 image = imread("Image/Image_Column_1_Row_90.png");
-figure
-imshow(image);
-
-grayImage = rgb2gray(image);
-BW1 = edge(grayImage, 'Canny');
-se90 = strel('line',10,15);
-BW1 = imdilate(BW1,se90);
-mask = imfill(BW1,8,'holes');
-
-[succes, cutImage, mask] = SimpleColorDetectionByHue(image, mask, [0,1,0,1,0,1], 0, 100);
-

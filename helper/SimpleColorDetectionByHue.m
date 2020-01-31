@@ -1,4 +1,4 @@
-function [succes, cutImage, mask] = SimpleColorDetectionByHue(rgbImage, filter, minBlopSize, maxBlopSize)
+function [succes, cutImage, mask] = SimpleColorDetectionByHue(rgbImage, maskIn, filter, minBlopSize, maxBlopSize)
 succes = false;
 cutImage = [];
 mask = [];
@@ -34,9 +34,9 @@ try
    
 	% Interactively and visually set/adjust thresholds using custom thresholding application.
 	% Available on the File Exchange: http://www.mathworks.com/matlabcentral/fileexchange/29372-thresholding-an-image
- 	%[hueThresholdLow, hueThresholdHigh] = threshold(hueThresholdLow, hueThresholdHigh, hImage);
- 	%[saturationThresholdLow, saturationThresholdHigh] = threshold(saturationThresholdLow, saturationThresholdHigh, sImage);
- 	%[valueThresholdLow, valueThresholdHigh] = threshold(valueThresholdLow, valueThresholdHigh, vImage);
+ 	[hueThresholdLow, hueThresholdHigh] = threshold(hueThresholdLow, hueThresholdHigh, hImage);
+ 	[saturationThresholdLow, saturationThresholdHigh] = threshold(saturationThresholdLow, saturationThresholdHigh, sImage);
+ 	[valueThresholdLow, valueThresholdHigh] = threshold(valueThresholdLow, valueThresholdHigh, vImage);
 
 	% Now apply each color band's particular thresholds to the color band
 	hueMask = (hImage >= hueThresholdLow) & (hImage <= hueThresholdHigh);
