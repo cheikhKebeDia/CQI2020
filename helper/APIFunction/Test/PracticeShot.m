@@ -2,7 +2,7 @@ function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, miss
     missileHit = false;
     gameEnd = false;
     
-    uri = uri + "/practice/shot/" + gameId
+    uri = uri + "/practice/shot/" + gameId;
 
     contentTypeField = matlab.net.http.field.ContentTypeField('application/json');
 
@@ -32,7 +32,14 @@ function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, miss
   
     array = response.Body.Data;
     json = jsondecode(convertCharsToStrings(char(array)));
-    missileData = base64decode(json.missileData);
+    if missileType == "snapshot" 
+        missileData = base64decode(json.missileData);
+    elseif missileType == "sonar"
+        missileData = json.missileData;
+        base64decode2(missileData, "temp.wav", "java");
+        [missileData, fs] = audioread("temp.wav");
+    end
+
     missileHit = false;
     gameEnd = false;
 end

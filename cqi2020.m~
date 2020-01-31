@@ -18,15 +18,9 @@ map = [0,0,0,0,0,0,0,0,0,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,93,93,93,0,0
 % ---------------- Login -------------------------------------
 
 %gameId = PracticeMap(api_key, map,  uri);
-%%[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "sonar", 1, 1, uri);
+%[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "sonar", 1, 1, uri);
 %audiowrite('paul.wav',missileData, 44100)
 
 % ---------------- Login end ---------------------------------
 
-token = ProductionHandShake(api_key,uri);
-rounds = ProductionPrivateTournaments(token, uri);
-for roundItterator = 1 : lenght(rounds)
-    games = ProductionRound(token, uri, rounds(1));
-    for gameIterator = 1 : lenght(games) 
-    isGameReady = ProductionGames(token, uri, games(1));
-end
+image = imread("Image/Image_Column_1_Row_90.png");
