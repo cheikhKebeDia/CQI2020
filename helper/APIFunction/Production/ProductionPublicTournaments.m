@@ -10,7 +10,7 @@ function [rounds] = ProductionPublicTournaments(token, uri)
 
     response = send(request,uri);
   
-    privateTournaments = response.Body.Data.privateTournaments;
-    responseEncode = jsonencode(convertCharsToStrings(char(privateTournaments)));
-    % a continuer
+    publicTournaments = response.Body.Data.publicTournaments;
+    rounds = jsonencode(convertCharsToStrings(char(publicTournaments))).rounds;
+    
 end
