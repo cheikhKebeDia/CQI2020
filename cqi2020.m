@@ -41,6 +41,8 @@ for roundItterator = 1 : numel(rounds)
         fprintf('In game number: %d\n', gameIterator);
         isGameReady = ProductionGames(token, uri, games(gameIterator));
         fprintf('Is game ready : %d\n', isGameReady);
+        message = ProductionMap(token, uri, games(gameIterator), map);
+        fprintf('message concerning the map : %s\n', message);
         
     end
     
