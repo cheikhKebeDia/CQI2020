@@ -34,5 +34,5 @@ se90 = strel('line',10,15);
 BW1 = imdilate(BW1,se90);
 mask = imfill(BW1,8,'holes');
 
-[succes, cutImage, mask] = SimpleColorDetectionByHue(image, mask, [0,1,0,1,0,1], 0, 100);
+[succes, cutImage, mask] = SimpleColorDetectionByHue(image, mask, [0,1,0,1,0,1], 20, 100);
 

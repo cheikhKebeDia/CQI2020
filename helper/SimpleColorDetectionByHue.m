@@ -48,15 +48,13 @@ try
 	coloredObjects = single(hueMask & valueMask & saturationMask);
     
     % Smooth the border using a morphological closing operation, imclose().
-    structuringElement = strel('disk', 2);
-	coloredObjects = imclose(coloredObjects, structuringElement);
     borderMask = single(coloredObjects);
     
 	% Tell user that we're going to filter out small objects.
 	smallestAcceptableArea = minBlopSize; % Keep areas only if they're bigger than this. 
     
 	% Get rid of small objects.  Note: bwareaopen returns a logical.
-	coloredObjects = uint8(bwareaopen(coloredObjects, smallestAcceptableArea, 8));
+	coloredObjects = uint8(bwareaopen(coloredObjects, smallestAcceptableArea));
 
 	% Take the big regions
     coloredObjects = ~coloredObjects;    
