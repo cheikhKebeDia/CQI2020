@@ -21,23 +21,16 @@ map = [0,0,0,0,0,0,0,0,0,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,93,93,93,0,0
 
 gameId = PracticeMap(api_key, map,  uri);
 [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "sonar", 1, -1, uri);
-sonarResult = analyseSonar(y, 82,88,650); %82,88,650 = best params
+sonarResult = analyseSonar(missileData, 82,88,650); %82,88,650 = best params
 
+% Voir s'il a une bonne détection
+for s = 1:100
+    if (sonarResult(s)) == 1
+        
+    end
+end
 
-%image = imread("Image/Image_Column_1_Row_90.png");
-%figure
-%imshow(image);
-
-%grayImage = rgb2gray(image);
-BW1 = edge(grayImage, 'Canny');
-se90 = strel('line',10,15);
-BW1 = imdilate(BW1,se90);
-mask = imfill(BW1,8,'holes');
-
-[succes, cutImage, mask] = SimpleColorDetectionByHue(image, mask, [0,1,0,1,0,1], 20, 100);
-
-% ---------------- Login end ---------------------------------
-
+%%
 token = ProductionHandShake(api_key,uri);
 rounds = ProductionPrivateTournaments(token, uri);
 for roundItterator = 1 : numel(rounds)
@@ -50,7 +43,24 @@ for roundItterator = 1 : numel(rounds)
         fprintf('In game number: %d\n', gameIterator);
         isGameReady = ProductionGames(token, uri, games(gameIterator));
         fprintf('Is game ready : %d\n', isGameReady);
+        message = ProductionMap(token, uri, games(gameIterator), map);
+        fprintf('message concerning the map : %s\n', message);
         
     end
     
 end
+
+
+%image = imread("Image/Image_Column_1_Row_90.png");
+%figure
+%imshow(image);
+
+%grayImage = rgb2gray(image);
+%BW1 = edge(grayImage, 'Canny');
+%se90 = strel('line',10,15);
+%BW1 = imdilate(BW1,se90);
+%mask = imfill(BW1,8,'holes');
+
+%[succes, cutImage, mask] = SimpleColorDetectionByHue(image, mask, [0,1,0,1,0,1], 20, 100);
+
+% ---------------- Login end ---------------------------------
