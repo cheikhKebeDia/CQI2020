@@ -25,17 +25,8 @@ map = [0,0,0,0,0,0,0,0,0,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,93,93,93,0,0
 
 token = ProductionHandShake(api_key,uri);
 rounds = ProductionPrivateTournaments(token, uri);
-for roundItterator = 1 : numel(rounds)
-    
-    fprintf('In round number: %d\n', roundItterator);
-    games = ProductionRound(token, uri, rounds(roundItterator));
-    
-    for gameIterator = 1 : numel(games) 
-        
-        fprintf('In game number: %d\n', gameIterator);
-        isGameReady = ProductionGames(token, uri, games(gameIterator));
-        fprintf('Is game ready : %d\n', isGameReady);
-        
-    end
-    
+for roundItterator = 1 : lenght(rounds)
+    games = ProductionRound(token, uri, rounds(1));
+    for gameIterator = 1 : lenght(games) 
+    isGameReady = ProductionGames(token, uri, games(1));
 end
