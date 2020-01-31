@@ -1,6 +1,7 @@
 function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, missileType, column, row, uri)
-    missileHit = false;
-    gameEnd = false;
+    missileHit = -1;
+    gameEnd = -1;
+    missileData = -1;
     
     uri = uri + "/practice/shot/" + gameId;
 
@@ -10,7 +11,8 @@ function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, miss
     acceptField = matlab.net.http.field.AcceptField([type]);
     xApiKey = matlab.net.http.field.GenericField("X-apikey",api_key);
     
-    if missileType == "snapshot" 
+    if missileType == "standard" 
+        fprintf("Shot at %i,%i --> ", column, row);
         col = struct("column", column, "row", row);
         data = struct("missileType", missileType, "parameters", col);
     elseif missileType == "sonar"
@@ -32,14 +34,12 @@ function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, miss
   
     array = response.Body.Data;
     json = jsondecode(convertCharsToStrings(char(array)));
-    if missileType == "snapshot" 
-        missileData = base64decode(json.missileData);
+    if missileType == "standard" 
+        missileHit = json.missileHit;
+        gameEnd = json.gameEnd;
     elseif missileType == "sonar"
         missileData = json.missileData;
         base64decode2(missileData, "temp.wav", "java");
         [missileData, fs] = audioread("temp.wav");
     end
-
-    missileHit = false;
-    gameEnd = false;
 end
