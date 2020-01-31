@@ -18,7 +18,8 @@ map = [0,0,0,0,0,0,0,0,0,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,93,93,93,0,0
 % ---------------- Login -------------------------------------
 
 gameId = PracticeMap(api_key, map,  uri);
-[missileHit, gameEnd] = PracticeShot(gameId, api_key, "standard", 1, 1, uri);
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "sonar", 1, 1, uri);
+audiowrite('paul.wav',missileData, 44100)
 
 % ---------------- Login end ---------------------------------
 
