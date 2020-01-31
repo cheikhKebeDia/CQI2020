@@ -1,6 +1,6 @@
 function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, missileType, column, row, uri)
-    missileHit = false;
-    gameEnd = false;
+    missileHit = -1;
+    gameEnd = -1;
     
     uri = uri + "/practice/shot/" + gameId;
 
@@ -34,12 +34,11 @@ function [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, miss
     json = jsondecode(convertCharsToStrings(char(array)));
     if missileType == "snapshot" 
         missileData = base64decode(json.missileData);
+        missileHit = json.missileData.missileHit;
+        gameEnd = json.missileData.gameEnd;
     elseif missileType == "sonar"
         missileData = json.missileData;
         base64decode2(missileData, "temp.wav", "java");
         [missileData, fs] = audioread("temp.wav");
     end
-
-    missileHit = false;
-    gameEnd = false;
 end
