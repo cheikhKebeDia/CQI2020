@@ -1,5 +1,5 @@
 function [games] = ProductionRound(token, uri, roundId)
-    uri = uri + "/tournaments/rounds/?"+roundId;
+    uri = uri + "/tournaments/rounds/"+roundId;
 
     header = matlab.net.http.HeaderField('X-token',token);
     method = matlab.net.http.RequestMethod.GET;
@@ -9,8 +9,9 @@ function [games] = ProductionRound(token, uri, roundId)
 
     response = send(request,uri);
   
-    filteredResponse = response.Body.Data.games;
-    games = jsonencode(convertCharsToStrings(char(filteredResponse)));
+    decodedResponse = jsondecode(convertCharsToStrings(char(response.Body.Data)));
+    games = decodedResponse.games;
+    
     
 end
 
