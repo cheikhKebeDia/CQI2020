@@ -1,0 +1,23 @@
+function [gameId] = PracticeMap(api_key, map,  uri)
+    gameId = '';
+    uri = uri + "/practice";
+
+    %contentTypeField = matlab.net.http.field.ContentTypeField('application/json');
+    body = matlab.net.http.MessageBody(map);
+
+    %type = matlab.net.http.MediaType('application/json');
+    %acceptField = matlab.net.http.field.AcceptField([type]);
+
+    header = matlab.net.http.HeaderField('X-apikey',api_key);
+    method = matlab.net.http.RequestMethod.POST;
+
+    request = matlab.net.http.RequestMessage(method,header,body);
+
+    response = send(request,uri);
+
+    setCookieFields = response.getFields('Set-Cookie');
+    gameId = setCookieFields.convert;
+end
+
+
+
