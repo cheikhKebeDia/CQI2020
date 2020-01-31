@@ -9,7 +9,7 @@ function [isReady] = ProductionGames(token, uri, gamesId)
 
     response = send(request,uri);
   
-    response = response.Body.Data.ready;
-    isReady = jsonencode(convertCharsToStrings(char(response)));
+    filteredResponse = response.Body.Data.ready;
+    isReady = jsonencode(convertCharsToStrings(char(filteredResponse)));
 end
 
