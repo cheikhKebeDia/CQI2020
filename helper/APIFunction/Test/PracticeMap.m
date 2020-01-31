@@ -17,7 +17,9 @@ function [gameId] = PracticeMap(api_key, map,  uri)
     request = matlab.net.http.RequestMessage(method,header,body);
     response = send(request,uri);
     
-    missionSetting
+    array = response.Body.Data;
+    json = jsondecode(convertCharsToStrings(char(array)));
+    gameId = json.uuid;
 end
 
 
