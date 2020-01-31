@@ -37,7 +37,7 @@ for i = lowerLimit:10:upperLimit-10
 end
 
 foundShips(foundShips < threshold) = 0;
-foundShips(foundShips > threshold) = 1;
+foundShips(foundShips >= threshold) = 1;
 
 end
 
