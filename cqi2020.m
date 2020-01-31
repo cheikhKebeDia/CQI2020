@@ -20,6 +20,65 @@ map = [0,0,0,0,0,0,0,0,0,98,98,98,98,0,0,0,0,0,0,0,0,0,0,0,0,0,0,93,93,93,93,0,0
 gameId = PracticeMap(api_key, map,  uri);
 
 % Voir s'il a une bonne détection
+
+memory = zeros(150, 150);
+
+%%
+
+col = 13;
+row = 13;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 13;
+row = 39;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+
+col = 13; 
+row = 65;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+
+col = 13; 
+row = 91;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 13; 
+row = 13;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 39;
+row = 13;
+
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 65;
+row = 13;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 91;
+row = 13;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 26; 
+row = 26;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 52;
+row = 26;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 52;
+row = 52;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+col = 75;
+row = 90;
+[missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "snapshot", col, row, uri);
+
+
+%%
+
 for col = 1:15
     [missileHit, gameEnd, missileData] = PracticeShot(gameId, api_key, "sonar", col, -1, uri);
     sonarResult = analyseSonar(missileData, 82,88,650); %82,88,650 = best params
